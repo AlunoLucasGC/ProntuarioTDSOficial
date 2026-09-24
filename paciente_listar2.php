@@ -78,16 +78,28 @@ $quantos = mysqli_num_rows($resultado);
 
             <tr>
                 <td><?php echo $p['id']; ?></td> <!-- Table Data, dados da tabela -->
+                <!--htmlspecialchars() é obrigatório em tudo que vem do banco
+                se alguém cadastrar um nome com sinal de menor(<br>), sem ele o
+                navegador tentaria entender aquilo como tag HTML -->
                 <td><?php echo htmlspecialchars($p['nome']); ?></td>
                 <td><?php echo $p['data_nascimento']; ?></td>
                 <td><?php echo $p['sexo']; ?></td>
                 <td><?php echo ($p['ativo'] == 1 ? 'Sim' : 'Não'); ?></td>
+                <td>
+                    <a href="paciente_form2.php?id=<?php echo $p['id']; ?>"> Editar </a>
+                    <a href="paciente_inativar2.php= <?php echo $p['id']; ?>">
+                        <?php echo ($p['ativo'] == 1 ? 'Inativar' : 'Reativar'); ?>
+                    </a>
+
+                </td>
 
             </tr>
 
         <?php } ?>
 
     </table>
+
+
 </body>
 
 </html>
