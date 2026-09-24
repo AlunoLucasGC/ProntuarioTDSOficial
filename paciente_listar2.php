@@ -55,6 +55,33 @@ $quantos = mysqli_num_rows($resultado);
     <p><b>Este foi o SELECT que o PHP mandou para o banco:</b></p>
     <pre><?php echo $sql ?></pre>
 
+    <?php
+
+    // -------------------------------------------------------------------
+    //  RECADO DA PÁGINA ANTERIOR
+    //
+    //  As outras telas terminam com header('Location: ...?ok=alguma_coisa')
+    //  e esse pedaço da URL chega aqui dentro de $_GET. É assim que uma
+    //  página avisa a outra que deu certo — sem guardar nada em lugar
+    //  nenhum, só pela barra de endereço.
+    //
+    //  A URL traz só uma palavra-código. A frase que a pessoa lê está
+    //  escrita AQUI, nesta lista. Assim ninguém consegue fazer a tela
+    //  exibir o texto que quiser trocando a URL na mão.
+    // -------------------------------------------------------------------
+
+    $frases = array(
+        'cadastrado' => 'Paciente cadastrado',
+        'atualizado' => 'Cadastro atualizado',
+        'inativado'  => 'Cadastro inativo',
+        'reativado'  => 'Cadastro reativado',
+        'campos'     => 'Faltou preencher nome, nascimento ou sexo',
+        'nao_encontrado' => 'Esse paciente não existe no banco.'
+    )
+
+
+    ?>
+
     <table border="1" cellpadding="4" cellspacing="0">
         <tr> <!--Significa Table Row, Linha da tabela -->
             <th>Id</th>
