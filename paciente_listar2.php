@@ -77,10 +77,20 @@ $quantos = mysqli_num_rows($resultado);
         'reativado'  => 'Cadastro reativado',
         'campos'     => 'Faltou preencher nome, nascimento ou sexo',
         'nao_encontrado' => 'Esse paciente não existe no banco.'
-    )
+    );
 
+    if (isset($_GET['ok']) && isset($frases[$_GET['ok']])) {
+        echo '<p><b> Deu certo: </b> ' . $frases[$_GET['ok']] . '</p>';
+    }
+    if (isset($_GET['erro']) && isset($frases[$_GET['erro']])) {
+        echo '<p><b> Deu erro: </b> ' . $frases[$_GET['erro']] . '</p>';
+    }
 
     ?>
+    <p>
+        <a href="paciente_form2.php">Cadastrar novo paciente</a>
+        ← este link leva ao <b>C</b> do CRUD (create)
+    </p>
 
     <table border="1" cellpadding="4" cellspacing="0">
         <tr> <!--Significa Table Row, Linha da tabela -->
