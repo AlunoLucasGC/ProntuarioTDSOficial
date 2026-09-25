@@ -155,7 +155,7 @@ mysqli_close($conexao);
                 <option value="O"><?php if ($sexo == 'O') {
                                         echo 'selected';
                                     } ?>>Outro</option>
-                </selected>
+            </select>
         </p>
         <p>
             <label for="telefone">Telefone</label><br>
