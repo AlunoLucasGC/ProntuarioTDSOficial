@@ -38,21 +38,29 @@ if ($id > 0) {
     WHERE id = ?";
 
     $stmt = mysqli_prepare($conexao, $sql);
-    mysqli_stmt_bind_param($stmt, ssssi, $nome, $nascimento, $sexo, $telefone, $id);
+    mysqli_stmt_bind_param($stmt, 'ssssi', $nome, $nascimento, $sexo, $telefone, $id);
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);
 
     $aviso = 'atualizado';
-    
+
 } else {
 
     $sql = "INSERT INTO pacientes (nome, data_nascimento, sexo, telefone, ativo)
     VALUES (?,?,?,?,1)";
 
     $stmt = mysqli_prepare($conexao, $sql);
-    mysqli_stmt_bind_param($stmt, ssss, $nome, $nascimento, $sexo, $telefone);
+    mysqli_stmt_bind_param($stmt, 'ssss', $nome, $nascimento, $sexo, $telefone);
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);
 
     $aviso = 'cadastrado';
 }
+
+//Passo 4 - Fechar e mandar de volta para a lista 
+
+mysqli_close($conexao);
+
+header('Location: paciente_listar2.php?ok=' .$aviso);
+exit;
+
