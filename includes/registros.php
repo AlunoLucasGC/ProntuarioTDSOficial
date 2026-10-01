@@ -39,28 +39,62 @@
 //  Qual tipo de registro este perfil escreve. Devolve null para quem
 //  não escreve nenhum — administrador e recepção.
 // -------------------------------------------------------------------
+function tipoDoPerfil($perfil){
+    if($perfil == 'tecnico'){
+        return 'anotacao';
+    }
 
+    if($perfil == 'medico'){
+        return 'evolucao';
+    }
 
+}
 
 // -------------------------------------------------------------------
 //  perfilEscreveRegistro($perfil)
 //  Este perfil escreve registro? Só técnico e médico.
 // -------------------------------------------------------------------
-
+function perfilEscreveRegistro($perfil){
+    return (tipoDoPerfil($perfil) !== null);
+}
 
 
 // -------------------------------------------------------------------
 //  nomeDoTipo($tipo)
 //  O nome que aparece na tela.
 // -------------------------------------------------------------------
+function nomeDoTipo($tipo){
+    $nomes = array(
+        'anotacao' => 'Anotação de Enfermagem',
+        'evolucao' => 'Evolução Médica'
+    );
 
+    if(isset($nomes[$tipo])){
+        return $nomes[$tipo];
+    }
+
+    return $tipo;
+
+}
 
 
 // -------------------------------------------------------------------
 //  nomeCurtoDoTipo($tipo)
 //  Versão curta, para caber no selo colorido da linha do tempo.
 // -------------------------------------------------------------------
+function nomeCurtoDoTipo($tipo){
+    $nomes = array(
+        'anotacao' => 'Anotação',
+        'evolucao' => 'Evolução'
+    );
 
+    if(isset($nomes[$tipo])){
+        return $nomes[$tipo];
+    }
+
+    return $tipo;
+
+}
 
 
 // -------------------------------------------------------------------
@@ -69,7 +103,9 @@
 //  Um registro clínico é uma frase, não uma letra. O mínimo existe
 //  para recusar o clique acidental — não para julgar o conteúdo.
 // -------------------------------------------------------------------
-
+function minimoDoTexto(){
+    return 15;
+}
 
 // Sem a marca de fechar o PHP: espaço solto depois dela iria para o
 // navegador e quebraria o header('Location: ...') de quem inclui.
