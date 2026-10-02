@@ -27,8 +27,8 @@ $eh_tecnico  = ($_SESSION['usuario_perfil'] == 'tecnico');
 $paciente_id = isset($_GET['paciente_id']) ? (int) $_GET['paciente_id'] : 0;
 
 if ($paciente_id == 0) {
-    header('Location: sinal_listar.php?erro=nao_encontrado');
-    exit;
+  header('Location: sinal_listar.php?erro=nao_encontrado');
+  exit;
 }
 
 // -------------------------------------------------------------------
@@ -57,9 +57,9 @@ $paciente = mysqli_fetch_assoc(mysqli_stmt_get_result($stmt));
 mysqli_stmt_close($stmt);
 
 if (!$paciente) {
-    mysqli_close($conexao);
-    header('Location: sinal_listar.php?erro=nao_encontrado');
-    exit;
+  mysqli_close($conexao);
+  header('Location: sinal_listar.php?erro=nao_encontrado');
+  exit;
 }
 
 $esta_internado = ($paciente['internacao_id'] !== null);
@@ -144,7 +144,7 @@ if (isset($_GET['ok']) && $_GET['ok'] == 'registrado') {
     <a href="sinal_listar.php" class="btn btn-outline-secondary btn-sm">Voltar</a>
     <?php if ($eh_tecnico && $esta_internado) { ?>
       <a href="sinal_form.php?paciente_id=<?php echo $paciente['id']; ?>"
-         class="btn btn-primary btn-sm">
+        class="btn btn-primary btn-sm">
         <i class="icon-base bx bx-pulse me-1"></i> Nova aferição
       </a>
     <?php } ?>
@@ -178,63 +178,65 @@ if (isset($_GET['ok']) && $_GET['ok'] == 'registrado') {
       </thead>
       <tbody>
 
-      <?php
-      if ($quantas == 0) {
-      ?>
-        <tr><td colspan="10" class="text-center text-body-secondary py-4">
-          Nenhuma aferição registrada para este paciente.
-        </td></tr>
-      <?php
-      }
+        <?php
+        if ($quantas == 0) {
+        ?>
+          <tr>
+            <td colspan="10" class="text-center text-body-secondary py-4">
+              Nenhuma aferição registrada para este paciente.
+            </td>
+          </tr>
+        <?php
+        }
 
-      while ($a = mysqli_fetch_assoc($afericoes)) {
-      ?>
-        <tr>
-          <td class="text-nowrap">
-            <?php echo date('d/m/Y', strtotime($a['data_hora'])); ?><br>
-            <strong><?php echo date('H:i', strtotime($a['data_hora'])); ?></strong>
-          </td>
+        while ($a = mysqli_fetch_assoc($afericoes)) {
+        ?>
+          <tr>
+            <td class="text-nowrap">
+              <?php echo date('d/m/Y', strtotime($a['data_hora'])); ?><br>
+              <strong><?php echo date('H:i', strtotime($a['data_hora'])); ?></strong>
+            </td>
 
-          <?php
-          foreach (listaDeSinais() as $campo => $faixa) {
+            <?php
+            foreach (listaDeSinais() as $campo => $faixa) {
 
               $valor   = $a[$campo];
               $alterado = estaAlterado($campo, $valor);
-          ?>
-            <td class="text-nowrap <?php echo ($alterado ? 'valor-alterado' : ''); ?>">
-              <?php
-              if ($valor === null) {
+            ?>
+              <td class="text-nowrap <?php echo ($alterado ? 'valor-alterado' : ''); ?>">
+                <?php
+                if ($valor === null) {
                   echo '<span class="text-body-secondary">—</span>';
-              } else {
+                } else {
                   echo number_format($valor, $faixa['decimais'], ',', '');
                   if ($alterado) {
-                      echo ' <i class="icon-base bx bx-error-circle"></i>';
+                    echo ' <i class="icon-base bx bx-error-circle"></i>';
                   }
-              }
-              ?>
-            </td>
-          <?php } ?>
+                }
+                ?>
+              </td>
+            <?php } ?>
 
-          <td class="text-nowrap">
-            <small>
-              <?php echo htmlspecialchars($a['aferido_por']); ?>
-              <?php if ($a['registro'] != '') { ?>
-                <br><span class="text-body-secondary"><?php echo htmlspecialchars($a['registro']); ?></span>
-              <?php } ?>
-            </small>
-          </td>
-        </tr>
-
-        <?php if ($a['observacao'] != '') { ?>
-          <tr>
-            <td colspan="10" class="pt-0 text-body-secondary small">
-              <i class="icon-base bx bx-message-square-dots me-1"></i>
-              <?php echo htmlspecialchars($a['observacao']); ?>
+            <td class="text-nowrap">
+              <small>
+                <?php echo htmlspecialchars($a['aferido_por']); ?>
+                <?php if ($a['registro'] != '') { ?>
+                  <br><span class="text-body-secondary"><?php echo htmlspecialchars($a['registro']); ?></span>
+                <?php } ?>
+              </small>
             </td>
           </tr>
-        <?php } ?>
 
-      <?php } ?>
+          <?php if ($a['observacao'] != '') { ?>
+            <tr>
+              <td colspan="10" class="pt-0 text-body-secondary small">
+                <i class="icon-base bx bx-message-square-dots me-1"></i>
+                <?php echo htmlspecialchars($a['observacao']); ?>
+              </td>
+            </tr>
+          <?php } ?>
+
+        <?php } ?>
 
       </tbody>
     </table>
