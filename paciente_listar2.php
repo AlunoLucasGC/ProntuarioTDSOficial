@@ -2,6 +2,7 @@
 
 // Passo 1 - Conectar no Banco
 require 'config/conexao.php';
+require 'includes/funcoes2.php';
 
 //Passo 2 - Escrever a Consulta no banco para exibir na tela 
 //O Texto da consulta fica guardada na variável, para ser usada depois 
@@ -119,8 +120,8 @@ $quantos = mysqli_num_rows($resultado);
                 se alguém cadastrar um nome com sinal de menor(<br>), sem ele o
                 navegador tentaria entender aquilo como tag HTML -->
                 <td><?php echo htmlspecialchars($p['nome']); ?></td>
-                <td><?php echo $p['data_nascimento']; ?></td>
-                <td><?php echo $p['sexo']; ?></td>
+                <td><?php echo (dataNaTela($p['data_nascimento'])); ?></td>
+                <td><?php echo htmlspecialchars(nomeDoSexo($p['sexo'])); ?></td>
                 <td><?php echo ($p['ativo'] == 1 ? 'Sim' : 'Não'); ?></td>
                 <td>
                     <a href="paciente_form2.php?id=<?php echo $p['id']; ?>"> Editar </a>

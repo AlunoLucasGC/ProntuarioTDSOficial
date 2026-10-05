@@ -91,6 +91,62 @@ function listaDeSexos(){
 function nomeDoSexo($letra){
     $sexos = listaDeSexos();
 
-    
+    if(isset($sexos[$letra])){
+        return $sexos[$letra];
+    }
 
+    return $letra;
+
+}
+
+// -------------------------------------------------------------------
+//  3. sexoExiste()   —   A PERGUNTA DE SIM OU NÃO
+//
+//  Devolve true ou false. Serve para VALIDAR: o paciente_salvar2.php
+//  usa esta function antes de gravar, para recusar uma letra que não
+//  está na lista.
+//
+//  Por que precisa, se o formulário já tem só três opções: porque o
+//  formulário pode ser contornado. Quem grava é o salvar2, e é lá que
+//  o estrago aconteceria. Nunca confie no que chega do navegador.
+//
+//  Repare que ela usa a MESMA lista do tradutor. Acrescentar um sexo
+//  na listaDeSexos() faz a tradução e a validação aprenderem juntas.
+//
+//  No sistema de verdade: perfilExiste() e viaExiste().
+// -------------------------------------------------------------------
+function sexoExiste(){
+    $sexos  = listaDeSexos();
+
+    return isset($sexos[$letra]);
+}
+
+// -------------------------------------------------------------------
+//  4. dataNaTela()   —   O FORMATADOR
+//
+//  Entra a data do jeito do banco, sai do jeito que a gente lê:
+//
+//      '1952-03-14'  ->  '14/03/1952'
+//
+//  São dois formatos para a MESMA data, e cada um tem a sua razão:
+//    aaaa-mm-dd  é como o MySQL guarda e como ele ordena certo;
+//    dd/mm/aaaa  é como se escreve data no Brasil.
+//
+//  strtotime() transforma o texto da data num número.
+//  date() pega esse número e escreve de volta no formato pedido:
+//      d = dia com dois dígitos, m = mês, Y = ano com quatro.
+//
+//  O if em cima é para data vazia ou nula: sem ele, strtotime()
+//  devolveria lixo e a tela mostraria 01/01/1970.
+//
+//  No sistema de verdade esta linha está escrita solta, repetida em
+//  várias telas: date('d/m/Y', strtotime($p['data_admissao'])).
+//  É um bom candidato a virar function um dia.
+// -------------------------------------------------------------------
+function dataNaTela($data){
+    if($data === null || $data === ''){
+        return '';
+    }
+
+    return date('d/m/y', strtotime($data));
 }
