@@ -148,7 +148,7 @@ function dataNaTela($data){
         return '';
     }
 
-    return date('d/m/y', strtotime($data));
+    return date('d/m/Y', strtotime($data));
 }
 
 
@@ -172,7 +172,7 @@ function dataNaTela($data){
 //  SELECT, com TIMESTAMPDIFF(YEAR, data_nascimento, CURDATE()).
 //  Mesmo resultado, outro lugar: lá é o MySQL, aqui é o PHP.
 // -------------------------------------------------------------------
-function calcularIdade(){
+function calcularIdade($nascimento){
     if($nascimento === null || $nascimento === ''){
         return 0;
     }
@@ -181,12 +181,12 @@ function calcularIdade(){
 //Quebra a data de nascimento em três números
 //Niver do do Colvero 2006-05-22
 $segundos = strtotime($nascimento); //38859
-$ano_nasc = (int) date('y', $segundos); // 2006
+$ano_nasc = (int) date('Y', $segundos); // 2006
 $mes_nasc = (int) date('m',$segundos); //05
 $dia_nasc = (int) date('d', $segundos); //22
 
 //date() sem o segundo paramero devolve a data de HOJE;
-$ano_hoje = (int) date('y');//2026
+$ano_hoje = (int) date('Y');//2026
 $mes_hoje = (int) date('m'); //10
 $dia_hoje = (int) date('d'); //05
 

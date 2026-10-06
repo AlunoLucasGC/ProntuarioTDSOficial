@@ -98,6 +98,7 @@ $quantos = mysqli_num_rows($resultado);
             <th>Id</th>
             <th>Nome</th> <!--Significa Table header, célula do cabeçalho -->
             <th>Nascimento</th>
+            <th>Idade</th>
             <th>Sexo</th>
             <th>Ativo</th>
             <th>Ações</th>
@@ -121,6 +122,7 @@ $quantos = mysqli_num_rows($resultado);
                 navegador tentaria entender aquilo como tag HTML -->
                 <td><?php echo htmlspecialchars($p['nome']); ?></td>
                 <td><?php echo (dataNaTela($p['data_nascimento'])); ?></td>
+                <td><?php echo (calcularIdade($p['data_nascimento'])); ?></td>
                 <td><?php echo htmlspecialchars(nomeDoSexo($p['sexo'])); ?></td>
                 <td><?php echo ($p['ativo'] == 1 ? 'Sim' : 'Não'); ?></td>
                 <td>
