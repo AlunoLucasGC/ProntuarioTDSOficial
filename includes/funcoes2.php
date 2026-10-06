@@ -150,3 +150,55 @@ function dataNaTela($data){
 
     return date('d/m/y', strtotime($data));
 }
+
+
+// -------------------------------------------------------------------
+//  5. calcularIdade()   —   O CÁLCULO
+//
+//  Entra a data de nascimento, sai o número de anos.
+//
+//  Esta é a única das cinco que faz CONTA, e por isso é a que mais
+//  ensina: o resultado muda sozinho com o passar do tempo, sem
+//  ninguém editar o banco. Idade não se guarda, se calcula.
+//
+//  A conta tem duas partes:
+//    a) ano de hoje menos ano de nascimento;
+//    b) se a pessoa ainda não fez aniversário este ano, tira um.
+//
+//  A parte (b) é a que todo mundo esquece. Sem ela, quem nasceu em
+//  dezembro fica um ano mais velho durante onze meses.
+//
+//  No sistema de verdade quem faz esta conta é o banco, dentro do
+//  SELECT, com TIMESTAMPDIFF(YEAR, data_nascimento, CURDATE()).
+//  Mesmo resultado, outro lugar: lá é o MySQL, aqui é o PHP.
+// -------------------------------------------------------------------
+function calcularIdade(){
+    if($nascimento === null || $nascimento === ''){
+        return 0;
+    }
+
+
+//Quebra a data de nascimento em três números
+//Niver do do Colvero 2006-05-22
+$segundos = strtotime($nascimento); //38859
+$ano_nasc = (int) date('y', $segundos); // 2006
+$mes_nasc = (int) date('m',$segundos); //05
+$dia_nasc = (int) date('d', $segundos); //22
+
+//date() sem o segundo paramero devolve a data de HOJE;
+$ano_hoje = (int) date('y');//2026
+$mes_hoje = (int) date('m'); //10
+$dia_hoje = (int) date('d'); //05
+
+// (a) a diferença de anos
+$idade = $ano_hoje - $ano_nasc;
+//idade = 2026-2006 = 20| 2027-2006 = 21
+
+//(b) ainda não fez aniversário este ano? tira um
+if($mes_hoje < $mes_nasc){
+    $idade = $idade - 1;
+}else if ($mes_hoje == $mes_nasc && $dia_hoje < $dia_nasc){
+    $idade = $idade -1;
+}
+return $idade;
+}
