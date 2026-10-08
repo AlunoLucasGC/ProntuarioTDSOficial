@@ -433,7 +433,7 @@ function quandoLegivel($horario)
 }
 
 // A mensagem do bloco vazio muda conforme o que existe adiante.
-$vazio = 'Nada para dar até o fim do plantão.';
+$vazio = 'Nada para dar até o fim do plantão.';   
 
 if ($proxima) {
 
