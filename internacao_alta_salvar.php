@@ -84,8 +84,6 @@ $sql = "DELETE a FROM administracoes a
 $stmt = mysqli_prepare($conexao, $sql);
 mysqli_stmt_bind_param($stmt, 'i', $internacao_id);
 mysqli_stmt_execute($stmt);
-
-$prescricoes_encerradas = mysqli_stmt_affected_rows($stmt);
 mysqli_stmt_close($stmt);
 
 
