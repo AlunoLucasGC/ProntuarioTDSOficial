@@ -91,4 +91,14 @@ mysqli_stmt_close($stmt);
 
 }
 
+mysqli_close($conexao);
+
+if($mudou == 0 ){
+    header('Location: internacao_alta.php?erro=ja_teve_alta');
+    exit;
+}
+
+header('Location: internacao_alta.php?ok=alta&encerradas=' . $prescricoes_encerradas);
+    exit;
+
 ?>
