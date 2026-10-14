@@ -32,29 +32,35 @@ $quantos = mysqli_num_rows($resultado);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Listar Pacientes</title>
+    <link rel="stylesheet" href="assets/vendor/css/core.css">
 </head>
 
-<body>
-    <h1>
-        Listar Pacientes - o R do CRUD
+<body class="bg-body-tertiary">
+    <div class="container- py-4">
+    <h1 class="h3 mb-1">
+        Listar Pacientes 
     </h1>
-    <fieldset>
-        <legend>
-            <b>O que esta página faz</b>
-        </legend>
-        <p>
-            Lê a tabela <code>Pacientes</code> e mostra na tela.
+    <p class="text-secondary mb-4"> O <strong>R</strong> do CRUD - Ler e Mostrar</p>
+    <div class="card mb-4">
+        <div class="card-body">
+        <h2 class="h6 text-primary mb-2">O que esta página faz</h2>
+        <p class="mb-2 ">Lê a tabela <code>Pacientes</code> e mostra na tela.</p>
+        
+        <p class="mb-0 small text-secondary ">
+            <strong>Passo 1</strong> Conectar no banco.
+            <strong>Passo 2</strong> Escreve o SELECT.
+            <strong>Passo 3</strong> Manda o SELECT para o banco.
+            <strong>Passo 4</strong> Pergunta quantas linhas vieram.
+            <strong>Passo 5</strong> o <code> while </code> imprime uma linha por paciente.
         </p>
-        <p>
-            <b>Passo 1</b> Conectar no banco.
-            <b>Passo 2</b> Escreve o SELECT.
-            <b>Passo 3</b> Manda o SELECT para o banco.
-            <b>Passo 4</b> Pergunta quantas linhas vieram.
-            <b>Passo 5</b> o <code> while </code> imprime uma linha por paciente.
-        </p>
-    </fieldset>
-    <p><b>Este foi o SELECT que o PHP mandou para o banco:</b></p>
-    <pre><?php echo $sql ?></pre>
+        </div>
+</div>
+<div class="card mb-4">
+    <div class="card-body">
+    <h2 class="h6 mb-2">Este foi o SELECT que o PHP mandou para o banco:</h2>
+    <pre class="bg-body-tertiary border rounded p-3 mb-0"><?php echo $sql ?></pre>
+    </div>
+</div>
 
     <?php
 
@@ -138,6 +144,7 @@ $quantos = mysqli_num_rows($resultado);
         <?php } ?>
 
     </table>
+    </div>
 
 
 </body>
