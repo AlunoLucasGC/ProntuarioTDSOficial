@@ -94,10 +94,10 @@ $quantos = mysqli_num_rows($resultado);
     }
 
     ?>
-    <p>
-        <a href="paciente_form2.php">Cadastrar novo paciente</a>
-        ← este link leva ao <b>C</b> do CRUD (create)
-    </p>
+    <div class="d-flex gap-2 mb-4 flex-wrap">
+        <a href="paciente_form2.php" class="btn btn-primary">Cadastrar novo paciente</a>
+         <a href="funcoes2.php" class="btn btn-outline-secondary">Ver as functions que essa tabela usa</a>
+    </div>
 
     <table border="1" cellpadding="4" cellspacing="0">
         <tr> <!--Significa Table Row, Linha da tabela -->
