@@ -99,7 +99,17 @@ $quantos = mysqli_num_rows($resultado);
          <a href="funcoes2.php" class="btn btn-outline-secondary">Ver as functions que essa tabela usa</a>
     </div>
 
-    <table border="1" cellpadding="4" cellspacing="0">
+<div class="card">
+    <div class="card-header">
+        <strong><?php echo $quantos;?></strong>
+        paciente(s) na tabela.
+        <span class="text-primary small">
+            Esse número veio do <code>mysqli_num_rows</code>, não contado a mão.
+        </span>
+    </div>
+
+    <div class="table-responsive">
+    <table class="table table-hover aling-middle mb-0">
         <tr> <!--Significa Table Row, Linha da tabela -->
             <th>Id</th>
             <th>Nome</th> <!--Significa Table header, célula do cabeçalho -->
@@ -145,8 +155,8 @@ $quantos = mysqli_num_rows($resultado);
 
     </table>
     </div>
-
-
+</div>
+    </div>
 </body>
 
 </html>
