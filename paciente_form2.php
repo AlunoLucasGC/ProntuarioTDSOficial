@@ -80,6 +80,7 @@ mysqli_close($conexao);
 <head>
   <meta charset="utf-8">
   <title><?php echo ($editando ? 'Editar paciente' : 'Cadastrar paciente'); ?></title>
+  <link rel="stylesheet" href="assets/vendor/css/core.css">
 </head>
 <body>
 
