@@ -87,10 +87,12 @@ $quantos = mysqli_num_rows($resultado);
     );
 
     if (isset($_GET['ok']) && isset($frases[$_GET['ok']])) {
-        echo '<p><b> Deu certo: </b> ' . $frases[$_GET['ok']] . '</p>';
+        echo '<div class = "alert alert-success" role="alert"> 
+        . <strong>Deu certo:</strong>' . $frases[$_GET['ok']] . '</div>';
     }
     if (isset($_GET['erro']) && isset($frases[$_GET['erro']])) {
-        echo '<p><b> Deu erro: </b> ' . $frases[$_GET['erro']] . '</p>';
+        echo '<div class = "alert alert-danger" role="alert"> 
+        . <strong>Deu erro:</strong>' . $frases[$_GET['erro']] . '</div>';
     }
 
     ?>
@@ -142,10 +144,18 @@ $quantos = mysqli_num_rows($resultado);
                 <td><?php echo htmlspecialchars(nomeDoSexo($p['sexo'])); ?></td>
                 <td><?php echo ($p['ativo'] == 1 ? 'Sim' : 'Não'); ?></td>
                 <td>
-                    <a href="paciente_form2.php?id=<?php echo $p['id']; ?>"> Editar </a>
-                    <a href="paciente_inativar2.php= <?php echo $p['id']; ?>">
-                        <?php echo ($p['ativo'] == 1 ? 'Inativar' : 'Reativar'); ?>
-                    </a>
+                    <a href="paciente_form2.php?id=<?php echo $p['id']; ?>"
+                    class="btn btn-sm btn-outline-primary"> Editar </a>
+
+                    <?php if($p['ativo'] == 1){?> 
+                    <a href="paciente_inativar2.php?id= <?php echo $p['id']; ?>"
+                    class="btn btn-sm btn-outline-danger">Inativar</a>
+                        
+
+                        <?php } else{?> 
+                    <a href="paciente_inativar2.php?id= <?php echo $p['id']; ?>"
+                    class="btn btn-sm btn-outline-success">Ativar</a>
+                        <?php } ?>
 
                 </td>
 
