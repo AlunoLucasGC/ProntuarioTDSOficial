@@ -82,9 +82,12 @@ mysqli_close($conexao);
   <title><?php echo ($editando ? 'Editar paciente' : 'Cadastrar paciente'); ?></title>
   <link rel="stylesheet" href="assets/vendor/css/core.css">
 </head>
-<body>
+<body class="bg-body-tertiary">
 
-<h1>
+<div class="container py-4">
+
+
+<h1 class="h3 mb-1">
   <?php
   // O título da tela muda junto. Quem está usando precisa saber se
   // está criando gente nova ou corrigindo alguém que já existe.
@@ -92,22 +95,24 @@ mysqli_close($conexao);
   ?>
 </h1>
 
-<fieldset>
-  <legend><b>O que esta página faz</b></legend>
-  <p>
-    Desenha o formulário. <b>Ela não grava nada.</b>
+<div class="card mb-4">
+  <div class="card-body">
+  <h2 class="h6 text-primary mb-2"> que esta página faz</h2>
+  <p class="mb-2">
+    Desenha o formulário. <strong>Ela não grava nada.</strong>
   </p>
-  <p>
+  <p class="mb-0 small text-primary">
     <?php if ($editando) { ?>
       Veio <code>?id=<?php echo $id; ?></code> na URL, então o PHP foi ao banco buscar
       esse paciente e já deixou os campos preenchidos.
       Ao salvar, vai virar um <b>UPDATE</b>.
     <?php } else { ?>
       Não veio id na URL, então os campos estão vazios.
-      Ao salvar, vai virar um <b>INSERT</b>.
+      Ao salvar, vai virar um <strong>INSERT</strong>.
     <?php } ?>
   </p>
-</fieldset>
+  </div>
+</div>
 
 <?php
 // Se o paciente_salvar2.php recusou os dados, ele manda a pessoa de
@@ -149,16 +154,19 @@ if (isset($_GET['erro']) && isset($frases[$_GET['erro']])) {
   <input type="hidden" name="id" value="<?php echo $id; ?>">
 <?php } ?>
 
-  <p>
-    <label for="nome">Nome completo</label><br>
+  <div class="card">
+    <div class="card-body">
+      <div class="mb-3">
+    <label class="form-label" for="nome">Nome completo</label><br>
     <?php
     // O value é o que já vem escrito no campo. No cadastro novo ele
     // está vazio; na edição, traz o que estava gravado.
     ?>
     <input type="text" id="nome" name="nome" size="50"
            value="<?php echo htmlspecialchars($nome); ?>">
-  </p>
 
+
+</div>
   <p>
     <label for="nascimento">Data de nascimento</label><br>
     <?php
@@ -200,6 +208,8 @@ if (isset($_GET['erro']) && isset($frases[$_GET['erro']])) {
     </button>
     <a href="paciente_listar2.php">Cancelar e voltar para a lista</a>
   </p>
+    </div>
+    </div>
 
 </form>
 
@@ -227,6 +237,7 @@ if (isset($_GET['erro']) && isset($frases[$_GET['erro']])) {
     <b>Campo sem <code>name</code> não viaja.</b> Fica bonito na tela e some no caminho.
   </p>
 </fieldset>
+</div>
 
 </body>
 </html>
