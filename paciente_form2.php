@@ -217,30 +217,36 @@ if (isset($_GET['erro']) && isset($frases[$_GET['erro']])) {
 
 </form>
 
-<hr>
+<div class="card mt-4">
+    <div class="card-body">
+      <h2 class="h6 mb-2">Para onde os dados vão agora</h2>
+      <p class="mb-2">
+        <!-- ATENÇÃO, é a única linha da página com código no lugar de letra.
+             Na linha de baixo, para aparecer na tela a palavra form entre o
+             sinal de menor e o de maior, é preciso escrever esses dois sinais
+             em código. Escritos direto, o navegador entenderia que começou uma
+             etiqueta e abriria um formulário de verdade no meio do texto.
+             Acento é outra história: á, ã e ç vão escritos como são, porque o
+             meta charset utf-8 lá em cima já avisou o navegador em que língua
+             ler este arquivo. -->
+        Ao apertar o botão, o navegador empacota tudo que está dentro do
+        <code>&lt;form&gt;</code> e entrega para o <code>paciente_salvar2.php</code>.<br>
+        Lá, cada campo chega dentro de <code>$_POST</code>, com o mesmo
+        <code>name</code> que está escrito aqui:
+        <code>$_POST['nome']</code>, <code>$_POST['nascimento']</code>,
+        <code>$_POST['sexo']</code>, <code>$_POST['telefone']</code>.
+      </p>
+      <p class="mb-0">
+        <strong>Campo sem <code>name</code> não viaja.</strong>
+        Fica bonito na tela e some no caminho.
+        <span class="text-secondary">
+          E repare: <code>class</code> e <code>name</code> não têm nada a ver um com o
+          outro. <code>class</code> é aparência; <code>name</code> é o que vai para o servidor.
+        </span>
+      </p>
+    </div>
+  </div>
 
-<fieldset>
-  <legend><b>Para onde os dados vão agora</b></legend>
-  <p>
-    <!-- ATENÇÃO, é a única linha da página com código no lugar de letra.
-         Na linha de baixo, para aparecer na tela a palavra form entre o
-         sinal de menor e o de maior, é preciso escrever esses dois sinais
-         em código. Escritos direto, o navegador entenderia que começou uma
-         etiqueta e abriria um formulário de verdade no meio do texto.
-         Acento é outra história: á, ã e ç vão escritos como são, porque o
-         meta charset utf-8 lá em cima já avisou o navegador em que língua
-         ler este arquivo. -->
-    Ao apertar o botão, o navegador empacota tudo que está dentro do
-    <code>&lt;form&gt;</code> e entrega para o <code>paciente_salvar2.php</code>.<br>
-    Lá, cada campo chega dentro de <code>$_POST</code>, com o mesmo
-    <code>name</code> que está escrito aqui:
-    <code>$_POST['nome']</code>, <code>$_POST['nascimento']</code>,
-    <code>$_POST['sexo']</code>, <code>$_POST['telefone']</code>.
-  </p>
-  <p>
-    <b>Campo sem <code>name</code> não viaja.</b> Fica bonito na tela e some no caminho.
-  </p>
-</fieldset>
 </div>
 
 </body>
