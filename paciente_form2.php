@@ -157,57 +157,61 @@ if (isset($_GET['erro']) && isset($frases[$_GET['erro']])) {
   <div class="card">
     <div class="card-body">
       <div class="mb-3">
-    <label class="form-label" for="nome">Nome completo</label><br>
+    <label class="form-label" for="nome">Nome completo</label>
     <?php
     // O value é o que já vem escrito no campo. No cadastro novo ele
     // está vazio; na edição, traz o que estava gravado.
     ?>
-    <input type="text" id="nome" name="nome" size="50"
+    <input type="text" class="form-control" id="nome" name="nome" 
            value="<?php echo htmlspecialchars($nome); ?>">
 
 
 </div>
-  <p>
-    <label for="nascimento">Data de nascimento</label><br>
+  <div class="row">
+    <div class="col-md-4 mb-3">
+    <label class="form-label" for="nascimento">Data de nascimento</label>
     <?php
     // type="date" abre o calendário do navegador e já entrega a data
     // no formato aaaa-mm-dd, que é exatamente o que o MySQL espera.
     ?>
-    <input type="date" id="nascimento" name="nascimento"
+    <input class="form-control" type="date" id="nascimento" name="nascimento"
            value="<?php echo htmlspecialchars($nascimento); ?>">
-  </p>
+    </div>
 
-  <p>
-    <label for="sexo">Sexo</label><br>
+
+
+  <div class="col-md-4 mb-3">
+    <label class="form-label" for="sexo">Sexo</label>
     <?php
     // A coluna do banco é ENUM('F','M','O'): só aceita essas três
     // letras. Por isso a lista tem exatamente essas três opções.
     // O selected marca a que já está gravada, na hora de editar.
     ?>
-    <select id="sexo" name="sexo">
+    <select class="form-select" id="sexo" name="sexo">
       <option value="">-- escolha --</option>
       <option value="F" <?php if ($sexo == 'F') { echo 'selected'; } ?>>Feminino</option>
       <option value="M" <?php if ($sexo == 'M') { echo 'selected'; } ?>>Masculino</option>
       <option value="O" <?php if ($sexo == 'O') { echo 'selected'; } ?>>Outro</option>
     </select>
-  </p>
+</div>
 
-  <p>
-    <label for="telefone">Telefone</label><br>
-    <input type="text" id="telefone" name="telefone" size="20"
+  <div class="col-md-4 mb-3">
+    <label class="form-label" for="telefone">Telefone</label>
+    <input class="form-control" type="text" id="telefone" name="telefone" size="20"
            value="<?php echo htmlspecialchars($telefone); ?>">
-  </p>
+</div>
+</div>
 
-  <p>
+  <div>
     <?php
     // O texto do botão também muda. É o mesmo botão e o mesmo destino;
     // só a palavra é diferente, para a pessoa saber o que vai acontecer.
     ?>
-    <button type="submit">
+    <button type="submit" class="btn btn-primary">
       <?php echo ($editando ? 'Salvar alterações (UPDATE)' : 'Cadastrar (INSERT)'); ?>
     </button>
-    <a href="paciente_listar2.php">Cancelar e voltar para a lista</a>
-  </p>
+    <a href="paciente_listar2.php" class="btn btn-outline-primary">Cancelar e voltar para a lista</a>
+</div>
     </div>
     </div>
 
