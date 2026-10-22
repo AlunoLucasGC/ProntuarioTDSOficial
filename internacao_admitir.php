@@ -31,6 +31,20 @@ if(!$paciente){
 }
 
 
+$sql = "SELECT id FROM leitos WHERE id = ? AND ativo = 1";
+$stmt = mysqli_prepare($conexao, $sql);
+mysqli_stmt_bind_param($stmt, 'i', $paciente_id);
+mysqli_stmt_execute($stmt);
+$res = mysqli_stmt_get_result($stmt);
+$leito = mysqli_fetch_assoc($res);
+mysqli_stmt_close($stmt);
+
+if(!$leito){
+    header('Location: internacao_movimentar.php?erro=leito_invalido');
+    exit;
+}
+
+
 
 ?>
 
